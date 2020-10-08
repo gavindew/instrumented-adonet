@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstrumentedAdoNet", "InstrumentedAdoNet\InstrumentedAdoNet.csproj", "{7C5D99D4-2B06-4A60-BB64-3FDB9C34DBFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstrumentedAdoNet.UnitTests", "InstrumentedAdoNet.UnitTests\InstrumentedAdoNet.UnitTests.csproj", "{54B30CA3-1BED-46D0-B863-14C73526F63C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C5D99D4-2B06-4A60-BB64-3FDB9C34DBFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C5D99D4-2B06-4A60-BB64-3FDB9C34DBFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C5D99D4-2B06-4A60-BB64-3FDB9C34DBFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C5D99D4-2B06-4A60-BB64-3FDB9C34DBFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54B30CA3-1BED-46D0-B863-14C73526F63C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54B30CA3-1BED-46D0-B863-14C73526F63C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54B30CA3-1BED-46D0-B863-14C73526F63C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54B30CA3-1BED-46D0-B863-14C73526F63C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
