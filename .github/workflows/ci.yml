@@ -26,4 +26,4 @@ jobs:
             NUGET_AUTH_TOKEN: ${{secrets.NUGET_API_KEY}}
       
       - name: Publish Package
-        run: dotnet nuget push -s https://www.nuget.org/api/v2/package -k $NUGET_AUTH_TOKEN .\src\InstrumentedAdoNet\bin\Release\*.nupkg
+        run: dotnet nuget push .\src\InstrumentedAdoNet\bin\Release\*.nupkg -s https://www.nuget.org/api/v2/package -k $NUGET_AUTH_TOKEN
