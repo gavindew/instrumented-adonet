@@ -26,3 +26,6 @@ jobs:
             source-url: https://api.nuget.org
         env:
             NUGET_AUTH_TOKEN: ${{secrets.NUGET_API_KEY}}
+      
+      - name: Publish Package
+        run: dotnet nuget push 'src\InstrumentedAdoNet\bin\Release\*.nupkg'
