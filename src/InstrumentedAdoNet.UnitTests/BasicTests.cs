@@ -30,8 +30,9 @@ namespace InstrumentedAdoNet.UnitTests
                 
                 throw new Exception("Should not get here");
             }
-            catch (Exception e)
+            catch
             {
+                // ignored
             }
 
             mockInstrumenter.Verify(x => x.ExecuteStart(It.IsAny<IDbCommand>(), SqlExecuteType.Scalar));
