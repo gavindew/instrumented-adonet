@@ -13,13 +13,13 @@ jobs:
       - uses: actions/setup-dotnet@master
         
       - name: Build Solution
-        run: dotnet build --configuration Release
+        run: dotnet build --configuration Release src
       
       - name: Run Tests
-        run: dotnet test
+        run: dotnet test src
       
       - name: Create Package
-        run: dotnet pack instrumented-adonet --configuration Release
+        run: dotnet pack src/InstrumentedAdoNet --configuration Release 
       
       - uses: actions/setup-dotnet@master
         with:
