@@ -30,8 +30,12 @@ namespace InstrumentedAdoNet.UnitTests
                 
                 throw new Exception("Should not get here");
             }
-            catch (Exception e)
+            catch(SqliteException e)
             {
+                if (!string.Equals(e.Message, "SQLite Error 1: 'no such table: NonExistentTable'."))
+                {
+                    throw new Exception("Unexpected exception");
+                }
             }
 
             mockInstrumenter.Verify(x => x.ExecuteStart(It.IsAny<IDbCommand>(), SqlExecuteType.Scalar));
