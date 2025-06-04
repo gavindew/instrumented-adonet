@@ -3,23 +3,28 @@ name: CI
 on:
   push:
     branches: [master]
+  pull_request:
+    branches: [master]
     
 jobs:
   pipeline:
-    runs-on: [windows-latest]
+    runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-dotnet@master
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
         
       - name: Build Solution
         run: dotnet build --configuration Release src
       
       - name: Run Tests
         run: dotnet test src
-      
+
       - name: Create Package
         run: dotnet pack src/InstrumentedAdoNet --configuration Release 
       
       - name: Publish Package
-        run: dotnet nuget push .\src\InstrumentedAdoNet\bin\Release\*.nupkg -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_API_KEY}}
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: dotnet nuget push ./src/InstrumentedAdoNet/bin/Release/*.nupkg -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_API_KEY}}
