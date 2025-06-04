@@ -10,7 +10,8 @@ namespace InstrumentedAdoNet
     public class InstrumentedDbTransaction : DbTransaction
     {
         private InstrumentedDbConnection _connection;
-        private DbTransaction _transaction;
+        private readonly DbTransaction _transaction;
+        private bool _disposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InstrumentedDbTransaction"/> class.
@@ -55,11 +56,11 @@ namespace InstrumentedAdoNet
         /// <param name="disposing">false if being called from a <c>finalizer</c></param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && this._transaction != null)
+            if (disposing && !this._disposed)
             {
                 this._transaction.Dispose();
+                this._disposed = true;
             }
-            this._transaction = null;
             this._connection = null;
             base.Dispose(disposing);
         }

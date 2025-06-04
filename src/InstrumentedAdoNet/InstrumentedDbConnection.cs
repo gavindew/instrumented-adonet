@@ -12,7 +12,8 @@ namespace InstrumentedAdoNet
     [System.ComponentModel.DesignerCategory("")]
     public class InstrumentedDbConnection : DbConnection
     {
-        private DbConnection _connection;
+        private readonly DbConnection _connection;
+        private bool _disposed;
         private IInstrumentationHandler _instrumentationHandler;
 
         /// <summary>
@@ -140,13 +141,13 @@ namespace InstrumentedAdoNet
         /// <param name="disposing">false if preempted from a <c>finalizer</c></param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && this._connection != null)
+            if (disposing && !this._disposed)
             {
                 this._connection.StateChange -= this.StateChangeHandler;
                 this._connection.Dispose();
+                this._disposed = true;
             }
             base.Dispose(disposing);
-            this._connection = null;
             this._instrumentationHandler = null;
         }
 
