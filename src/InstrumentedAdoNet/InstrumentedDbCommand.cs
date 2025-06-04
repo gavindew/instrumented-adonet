@@ -13,10 +13,11 @@ namespace InstrumentedAdoNet
     /// </summary>
     public partial class InstrumentedDbCommand : DbCommand
     {
-        private DbCommand _command;
+        private readonly DbCommand _command;
         private IInstrumentationHandler _instrumentationHandler;
         private DbConnection _connection;
         private DbTransaction _transaction;
+        private bool _disposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InstrumentedDbCommand"/> class.
@@ -345,11 +346,11 @@ namespace InstrumentedAdoNet
         /// <param name="disposing">false if this is being disposed in a <c>finalizer</c>.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && this._command != null)
+            if (disposing && !this._disposed)
             {
                 this._command.Dispose();
+                this._disposed = true;
             }
-            this._command = null;
             base.Dispose(disposing);
         }
 
